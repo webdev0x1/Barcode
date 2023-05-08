@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © 2015 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Lof_MarketPlace::inventory" icon="fa fa-cubes" title="Inventory" module="Lof_MarketPlace" sortOrder="40" resource="Lof_MarketPlace::inventory"/>
+        <add id="Lof_MarketPlace::manage_inventory" title="Manager Inventory" module="Lof_MarketPlace" action="catalog/inventory" sortOrder="41" parent="Lof_MarketPlace::inventory" resource="Lof_MarketPlace::manage_inventory"/>
+        <add id="Lof_MarketPlace::manage_barcodes" title="Manager Barcodes" module="Lof_MarketPlace" action="catalog/barcodes" sortOrder="42" parent="Lof_MarketPlace::inventory" resource="Lof_MarketPlace::manage_barcodes"/>
+    </menu>
+</config>

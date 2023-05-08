@@ -1,0 +1,133 @@
+<h1>Print Barcodes</h1>
+<a href="javascript:void(0)" class="pull-right" id="print-barcodes">Print Barcodes</a>
+<table id="table-barcodes" data-height="560" class="table">
+    <thead>
+        <tr>
+            <th class='no-print'>Product Name</th>
+            <th class='no-print'>Product Sku</th>
+            <th>Barcode</th>
+            <th class='no-print'>Created At</th>
+        </tr>   
+    </thead>
+    <tbody>
+        <?php 
+            $_objectManager = \Magento\Framework\App\ObjectManager::getInstance(); //instance of\Magento\Framework\App\ObjectManager
+            $storeManager = $_objectManager->get('Magento\Store\Model\StoreManagerInterface'); 
+            $currentStore = $storeManager->getStore();
+            // $appState = $_objectManager->get('\Magento\Framework\App\State');
+            // //$appState->setAreaCode('marketplace');
+            // $mediaUrl = $currentStore->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA);
+            // foreach($this->sellerProductCollection() as $product) {
+            //     if(!empty($product->getBarcode())) {
+            //         echo "<tr>";
+            //         echo "<td class='no-print'>".$product->getName()."</td>";
+            //         echo "<td class='no-print'>".$product->getSku()."</td>";
+            //         echo "<td class='print'> <img width='220' src='".$mediaUrl.'barcodes/'.$product->getBarcode().".png' /></td>";
+            //         echo "</tr>";
+            //     }
+            // }
+        ?>
+    </tbody>
+</table>
+
+
+<style>
+    @media print {#table-barcodes .no-print {display: none;}#table-barcodes .print {display:block;}}
+</style>
+
+<script>
+      require([
+        'jquery',
+        'Akwaaba_Barcode/js/jquery.dataTables.min',
+        'Akwaaba_Barcode/js/date-eu'
+    ], function($, $t){
+        $(document).ready(function() {
+
+            $.extend( jQuery.fn.dataTableExt.oSort, {
+                "date-eu-pre": function ( date ) {
+                    date = date.replace(" ", "");
+                    
+                    if ( ! date ) {
+                        return 0;
+                    }
+            
+                    var year;
+                    var eu_date = date.split(/[\.\-\/]/);
+            
+                    /*year (optional)*/
+                    if ( eu_date[2] ) {
+                        year = eu_date[2];
+                    }
+                    else {
+                        year = 0;
+                    }
+            
+                    /*month*/
+                    var month = eu_date[1];
+                    if ( month.length == 1 ) {
+                        month = 0+month;
+                    }
+            
+                    /*day*/
+                    var day = eu_date[0];
+                    if ( day.length == 1 ) {
+                        day = 0+day;
+                    }
+            
+                    return (year + month + day) * 1;
+                },
+            
+                "date-eu-asc": function ( a, b ) {
+                    return ((a < b) ? -1 : ((a > b) ? 1 : 0));
+                },
+            
+                "date-eu-desc": function ( a, b ) {
+                    return ((a < b) ? 1 : ((a > b) ? -1 : 0));
+                }
+            } );
+
+            $('#table-barcodes').DataTable({
+                'processing': true,
+                'serverSide': true,
+                'serverMethod': 'post',
+                'ajax': {
+                    'url': '<?php echo $currentStore->getUrl('marketplace/catalog/barcodesAjax/'); ?>',
+                },
+                'columns': [
+                    { data: 'product_name', className: 'no-print' },
+                    { data: 'sku', className: 'no-print' },
+                    { data: 'barcode', className: 'print' },
+                    { data: 'created_at', className: 'no-print' }
+                ],
+                columnDefs: [
+                    { type: 'date-eu', targets: 3 }
+                ]
+            });
+        } );
+    })
+
+function printData()
+{
+   var divToPrint=document.getElementById("table-barcodes");
+   newWin= window.open("");
+   newWin.document.write('<html><head><style>@media print {#table-barcodes .no-print {display: none;}#table-barcodes .print {display:block;}}</style></head><body>'+divToPrint.outerHTML+'</body></html>');
+   newWin.print();
+   newWin.close();
+}
+
+    require([
+        'jquery'
+    ], function ($) {
+        $('#print-barcodes').on('click',function(){
+            printData();
+        });
+        $('.print-barcode').on('click' ,function(event) {
+            html = $(this).closest('td').prev('td').innerHtml();
+            newWin= window.open("");
+            newWin.document.write('<html><head><style>@media print {#table-barcodes .no-print {display: none;}#table-barcodes .print {display:block;}}</style></head><body>'+html+'</body></html>');
+            newWin.print();
+            newWin.close();
+        });
+    });
+    </script>
+</script>

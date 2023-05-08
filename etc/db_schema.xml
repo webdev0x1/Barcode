@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+	<table name="sales_order_item">
+		<column name="barcode" nullable="true" xsi:type="varchar" comment="Barcode " length="255"/>
+		<column name="barcode_type" nullable="true" xsi:type="varchar" comment="Barcode Type" length="255"/>
+	</table>
+	<table name="sales_invoice_item">
+		<column name="barcode" nullable="true" xsi:type="varchar" comment="Barcode" length="255"/>
+		<column name="barcode_type" nullable="true" xsi:type="varchar" comment="Barcode Type" length="255"/>
+	</table>
+	<table name="sales_shipment_item">
+		<column name="barcode" nullable="true" xsi:type="varchar" comment="Barcode" length="255"/>
+		<column name="barcode_type" nullable="true" xsi:type="varchar" comment="Barcode Type" length="255"/>
+	</table>
+	<table name="quote_item">
+		<column name="barcode" nullable="true" xsi:type="varchar" comment="Barcode" length="255"/>
+		<column name="barcode_type" nullable="true" xsi:type="varchar" comment="Barcode Type" length="255"/>
+	</table>
+</schema>

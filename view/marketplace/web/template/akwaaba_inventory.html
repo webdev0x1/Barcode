@@ -1,0 +1,83 @@
+<!-- this is a Knockout.js template. It is loaded remotely by customizations
+     Magento made to Knockout's bootstrap -->
+     <section id="page:main-container" class="content"><div id="container" class="main-col">
+          <div class="col-md-12">
+               <div class="x_panel">
+                    <div class="clearfix"></div>
+                    <div class="x_content akwaaba-inventory">
+     <strong data-bind="text: message"></strong>
+
+     <form data-bind="attr: {'data-hasrequired': $t('* Required Fields')}, submit: inventory"class="form form-barcode-data" id="barcode-data">
+          <fieldset
+                  data-bind="attr: { id:'barcode-data-'+index, value:index}"
+                  class="fieldset admin__fieldset fieldset_setting">
+              <div class="admin__field field required">
+               <input type="hidden" name="seller_id" id="seller_id" value="<%- sellerid %>">
+               <input type="hidden" name="barcodes[]" />
+                    <label for="inc-inventory" class="label admin__field-label"><span data-bind="i18n: 'Stock'"></span></label>
+                    <div class="admin__field-control control">
+                         <div class="admin__field">
+                         <select
+                              data-validate="{'required-entry':true}"
+                              name="inventory"
+                              class=""
+                              data-bind="
+                              attr: { 'id': 'inventory' },
+                              value: 'inc',
+                              event:{ change: inventoryFocus }
+                              "><option value="inc">Increase</option><option value="dec">Decrease</option></select>
+                         </div>
+                    </div>
+               </div>
+                         
+               <div class="admin__field field required">
+                              <label for="inc-inventory" class="label admin__field-label"><span data-bind="i18n: 'Product(s)'"></span></label>
+                              <div class="admin__field-control control">
+                                   <div class="admin-field">
+                               <div class=""
+                                   style="width: 100%; border: 1px solid #767676; float:right;height: 500px;overflow: scroll;"
+                                   data-bind="product" id="products">
+                                   <table class="table">
+                                        <thead>
+                                             <tr>
+                                                  <th scope="col">
+                                                       Barcode
+                                                  </th>
+                                                  <th scope="col">
+                                                       Product Name
+                                                  </th>
+                                                  <th scope="col">
+                                                       Image
+                                                  </th>
+                                                  <th scope="col">
+                                                       Qty
+                                                  </th>
+                                                  <th scope="col">
+                                                       Price
+                                                  </th>
+                                                  <th scope="col">
+                                                       Remove
+                                                  </th>
+                                             </tr>
+                                        </thead>
+                                        <tbody id="barcode-products"></tbody>
+                                   </table>
+                              </div>
+                         </div>
+                    </div>
+                              </div>
+                              <div class="field" style="float:right;clear:both;">
+                              <div class="actions-toolbar">
+                                   <div class="primary">
+                                           <button class="action-default scalable save primary" type="submit">
+                                               <span data-bind="i18n: 'Submit'"></span>
+                                           </button>
+                                   </div>
+                              </div>
+                         </div>
+          </fieldset>
+      </form>
+      </div>
+      </div>
+      </div>
+     </section>

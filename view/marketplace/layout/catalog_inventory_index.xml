@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="vendor-1column"  xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <title>Manage Inventory</title>
+    </head>
+	<body>
+		<referenceBlock name="page.title">
+            <action method="setTitleClass">
+                <argument name="class" xsi:type="string">complex</argument>
+            </action>
+        </referenceBlock>
+		<referenceBlock name="content">
+		    <block template="Akwaaba_Barcode::content.phtml" class="Akwaaba\Barcode\Block\Marketplace\Inventory" name="akwaaba_barcode_block_inventory" />
+            <uiComponent name="akwaaba_inventory"/>
+        </referenceBlock>
+	</body>
+</page>

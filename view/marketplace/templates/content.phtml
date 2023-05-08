@@ -1,0 +1,20 @@
+<h1>Manage Inventory</h1>
+<?php $seller_id = $this->getCurrentSeller(); ?>
+<div id="inventory-component" data-bind="scope:'akwaaba_inventory'">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+    <script type="text/x-magento-init">
+    {
+        "#inventory-component": {
+            "Magento_Ui/js/core/app": {
+               "components": {
+                    "akwaaba_inventory": {
+                        "component": "Akwaaba_Barcode/js/akwaaba_inventory",
+                        "template" : "Akwaaba_Barcode/akwaaba_inventory",
+                        "sellerid" : "<?php echo $seller_id; ?>"
+                    }
+                }
+            }
+        }
+    }
+    </script>
+</div>

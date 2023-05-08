@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+   <default>
+       <barcode_config>
+           <configuration>
+               <is_active>1</is_active>
+               <default_barcode_text>sku</default_barcode_text>
+               <default_barcode_type>UPCA</default_barcode_type>
+               <show_admin>1</show_admin>
+           </configuration>
+       </barcode_config>
+   </default>
+</config>
